@@ -1,0 +1,324 @@
+{
+  "info": {
+    "name": "Notification Service API",
+    "description": "Complete API collection for Notification Service",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Notifications",
+      "item": [
+        {
+          "name": "Send Notification",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": \"user123\",\n  \"type\": \"EMAIL\",\n  \"payload\": {\n    \"to\": \"user@example.com\",\n    \"subject\": \"Test Notification\",\n    \"body\": \"This is a test notification\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/notifications/send",
+              "host": ["{{base_url}}"],
+              "path": ["notifications", "send"]
+            }
+          }
+        },
+        {
+          "name": "Send Bulk Notifications",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"notifications\": [\n    {\n      \"userId\": \"user1\",\n      \"type\": \"EMAIL\",\n      \"payload\": {\n        \"to\": \"user1@example.com\",\n        \"subject\": \"Bulk Test\",\n        \"body\": \"Message 1\"\n      }\n    },\n    {\n      \"userId\": \"user2\",\n      \"type\": \"SMS\",\n      \"payload\": {\n        \"to\": \"+1234567890\",\n        \"message\": \"SMS Test\"\n      }\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/notifications/bulk-send",
+              "host": ["{{base_url}}"],
+              "path": ["notifications", "bulk-send"]
+            }
+          }
+        },
+        {
+          "name": "Schedule Notification",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": \"user123\",\n  \"type\": \"EMAIL\",\n  \"scheduledAt\": \"2025-12-02T10:00:00\",\n  \"payload\": {\n    \"to\": \"user@example.com\",\n    \"subject\": \"Scheduled Notification\",\n    \"body\": \"This is scheduled\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/notifications/schedule",
+              "host": ["{{base_url}}"],
+              "path": ["notifications", "schedule"]
+            }
+          }
+        },
+        {
+          "name": "Get Notification",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/notifications/{{notification_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["notifications", "{{notification_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Get User Notifications",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/notifications/user/{{user_id}}?page=0&size=20",
+              "host": ["{{base_url}}"],
+              "path": ["notifications", "user", "{{user_id}}"],
+              "query": [
+                {"key": "page", "value": "0"},
+                {"key": "size", "value": "20"}
+              ]
+            }
+          }
+        },
+        {
+          "name": "Search Notifications",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/notifications/search?status=SENT&type=EMAIL",
+              "host": ["{{base_url}}"],
+              "path": ["notifications", "search"],
+              "query": [
+                {"key": "status", "value": "SENT"},
+                {"key": "type", "value": "EMAIL"}
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Templates",
+      "item": [
+        {
+          "name": "Create Template",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"welcome-email\",\n  \"channel\": \"EMAIL\",\n  \"subject\": \"Welcome {{name}}\",\n  \"body\": \"Hello {{name}}, welcome to our service!\",\n  \"placeholders\": [\"name\"]\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/templates",
+              "host": ["{{base_url}}"],
+              "path": ["templates"]
+            }
+          }
+        },
+        {
+          "name": "Get Template",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/templates/{{template_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["templates", "{{template_id}}"]
+            }
+          }
+        },
+        {
+          "name": "List Templates",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/templates?page=0&size=20",
+              "host": ["{{base_url}}"],
+              "path": ["templates"],
+              "query": [
+                {"key": "page", "value": "0"},
+                {"key": "size", "value": "20"}
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Preferences",
+      "item": [
+        {
+          "name": "Get User Preferences",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/preferences/{{user_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["preferences", "{{user_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Update User Preferences",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"emailEnabled\": true,\n  \"smsEnabled\": false,\n  \"pushEnabled\": true,\n  \"inAppEnabled\": true,\n  \"webhookEnabled\": false\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/preferences/{{user_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["preferences", "{{user_id}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin",
+      "item": [
+        {
+          "name": "Retry Notification",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/admin/retry/{{notification_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["admin", "retry", "{{notification_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Cancel Notification",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/admin/cancel/{{notification_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["admin", "cancel", "{{notification_id}}"]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8080"
+    },
+    {
+      "key": "jwt_token",
+      "value": ""
+    },
+    {
+      "key": "user_id",
+      "value": "user123"
+    },
+    {
+      "key": "notification_id",
+      "value": ""
+    },
+    {
+      "key": "template_id",
+      "value": ""
+    }
+  ]
+}

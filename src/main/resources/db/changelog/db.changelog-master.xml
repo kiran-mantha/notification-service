@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <changeSet id="1" author="system">
+        <createTable tableName="notifications">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="user_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="template_id" type="BIGINT"/>
+            <column name="payload" type="JSONB"/>
+            <column name="scheduled_at" type="TIMESTAMP"/>
+            <column name="sent_at" type="TIMESTAMP"/>
+            <column name="retries" type="INT" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP"/>
+        </createTable>
+        
+        <createIndex tableName="notifications" indexName="idx_user_id">
+            <column name="user_id"/>
+        </createIndex>
+        <createIndex tableName="notifications" indexName="idx_status">
+            <column name="status"/>
+        </createIndex>
+        <createIndex tableName="notifications" indexName="idx_scheduled_at">
+            <column name="scheduled_at"/>
+        </createIndex>
+    </changeSet>
+
+    <changeSet id="2" author="system">
+        <createTable tableName="templates">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="channel" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="subject" type="VARCHAR(500)"/>
+            <column name="body" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="placeholders" type="JSONB"/>
+            <column name="created_at" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="3" author="system">
+        <createTable tableName="user_preferences">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="user_id" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="email_enabled" type="BOOLEAN" defaultValueBoolean="true">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sms_enabled" type="BOOLEAN" defaultValueBoolean="true">
+                <constraints nullable="false"/>
+            </column>
+            <column name="push_enabled" type="BOOLEAN" defaultValueBoolean="true">
+                <constraints nullable="false"/>
+            </column>
+            <column name="in_app_enabled" type="BOOLEAN" defaultValueBoolean="true">
+                <constraints nullable="false"/>
+            </column>
+            <column name="webhook_enabled" type="BOOLEAN" defaultValueBoolean="true">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="4" author="system">
+        <createTable tableName="webhook_endpoints">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="user_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="url" type="VARCHAR(1000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="secret_key" type="VARCHAR(500)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_active" type="BOOLEAN" defaultValueBoolean="true">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP"/>
+        </createTable>
+        
+        <createIndex tableName="webhook_endpoints" indexName="idx_webhook_user_id">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+
+    <changeSet id="5" author="system">
+        <createTable tableName="delivery_logs">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="notification_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="request_payload" type="TEXT"/>
+            <column name="response_payload" type="TEXT"/>
+            <column name="status_code" type="INT"/>
+            <column name="attempt" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        
+        <createIndex tableName="delivery_logs" indexName="idx_notification_id">
+            <column name="notification_id"/>
+        </createIndex>
+    </changeSet>
+
+</databaseChangeLog>
