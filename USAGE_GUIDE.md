@@ -19,7 +19,6 @@ mvn spring-boot:run
 - **Health Check**: http://localhost:8080/actuator/health
 - **Metrics**: http://localhost:8080/actuator/prometheus
 
----
 
 ---
 
@@ -29,7 +28,6 @@ mvn spring-boot:run
 
 ```bash
 curl -X POST http://localhost:8080/notifications/send \
-  -H "Authorization: Bearer YOUR_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
     "userId": "user123",
@@ -59,7 +57,6 @@ curl -X POST http://localhost:8080/notifications/send \
 
 ```bash
 curl -X POST http://localhost:8080/notifications/send \
-  -H "Authorization: Bearer YOUR_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
     "userId": "user123",
@@ -75,7 +72,6 @@ curl -X POST http://localhost:8080/notifications/send \
 
 ```bash
 curl -X POST http://localhost:8080/notifications/send \
-  -H "Authorization: Bearer YOUR_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
     "userId": "user123",
@@ -92,7 +88,6 @@ curl -X POST http://localhost:8080/notifications/send \
 
 ```bash
 curl -X POST http://localhost:8080/notifications/send \
-  -H "Authorization: Bearer YOUR_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
     "userId": "user123",
@@ -109,7 +104,6 @@ curl -X POST http://localhost:8080/notifications/send \
 
 ```bash
 curl -X POST http://localhost:8080/notifications/send \
-  -H "Authorization: Bearer YOUR_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
     "userId": "user123",
@@ -130,7 +124,6 @@ curl -X POST http://localhost:8080/notifications/send \
 
 ```bash
 curl -X POST http://localhost:8080/templates \
-  -H "Authorization: Bearer YOUR_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
     "name": "welcome-email",
@@ -145,7 +138,6 @@ curl -X POST http://localhost:8080/templates \
 
 ```bash
 curl -X POST http://localhost:8080/notifications/send \
-  -H "Authorization: Bearer YOUR_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
     "userId": "user123",
@@ -164,7 +156,6 @@ curl -X POST http://localhost:8080/notifications/send \
 
 ```bash
 curl -X GET "http://localhost:8080/templates?page=0&size=20" \
-  -H "Authorization: Bearer YOUR_TOKEN"
 ```
 
 ---
@@ -175,7 +166,6 @@ curl -X GET "http://localhost:8080/templates?page=0&size=20" \
 
 ```bash
 curl -X POST http://localhost:8080/notifications/schedule \
-  -H "Authorization: Bearer YOUR_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
     "userId": "user123",
@@ -197,7 +187,6 @@ curl -X POST http://localhost:8080/notifications/schedule \
 
 ```bash
 curl -X POST http://localhost:8080/notifications/bulk-send \
-  -H "Authorization: Bearer YOUR_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
     "notifications": [
@@ -230,7 +219,6 @@ curl -X POST http://localhost:8080/notifications/bulk-send \
 
 ```bash
 curl -X GET http://localhost:8080/preferences/user123 \
-  -H "Authorization: Bearer YOUR_TOKEN"
 ```
 
 **Response:**
@@ -250,7 +238,6 @@ curl -X GET http://localhost:8080/preferences/user123 \
 
 ```bash
 curl -X PUT http://localhost:8080/preferences/user123 \
-  -H "Authorization: Bearer YOUR_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
     "emailEnabled": true,
@@ -271,14 +258,12 @@ curl -X PUT http://localhost:8080/preferences/user123 \
 
 ```bash
 curl -X GET http://localhost:8080/notifications/550e8400-e29b-41d4-a716-446655440000 \
-  -H "Authorization: Bearer YOUR_TOKEN"
 ```
 
 ### 2. Get All Notifications for a User
 
 ```bash
 curl -X GET "http://localhost:8080/notifications/user/user123?page=0&size=20" \
-  -H "Authorization: Bearer YOUR_TOKEN"
 ```
 
 ### 3. Search Notifications with Filters
@@ -286,19 +271,15 @@ curl -X GET "http://localhost:8080/notifications/user/user123?page=0&size=20" \
 ```bash
 # By status
 curl -X GET "http://localhost:8080/notifications/search?status=SENT" \
-  -H "Authorization: Bearer YOUR_TOKEN"
 
 # By type
 curl -X GET "http://localhost:8080/notifications/search?type=EMAIL" \
-  -H "Authorization: Bearer YOUR_TOKEN"
 
 # By date range
 curl -X GET "http://localhost:8080/notifications/search?startDate=2025-12-01T00:00:00&endDate=2025-12-01T23:59:59" \
-  -H "Authorization: Bearer YOUR_TOKEN"
 
 # Combined filters
 curl -X GET "http://localhost:8080/notifications/search?userId=user123&status=FAILED&type=EMAIL" \
-  -H "Authorization: Bearer YOUR_TOKEN"
 ```
 
 ---
@@ -311,14 +292,13 @@ curl -X GET "http://localhost:8080/notifications/search?userId=user123&status=FA
 
 ```bash
 curl -X POST http://localhost:8080/admin/retry/550e8400-e29b-41d4-a716-446655440000 \
-  -H "Authorization: Bearer YOUR_ADMIN_TOKEN"
+
 ```
 
 ### 2. Cancel Notification
 
 ```bash
 curl -X POST http://localhost:8080/admin/cancel/550e8400-e29b-41d4-a716-446655440000 \
-  -H "Authorization: Bearer YOUR_ADMIN_TOKEN"
 ```
 
 ---

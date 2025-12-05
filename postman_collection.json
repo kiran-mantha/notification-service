@@ -14,10 +14,6 @@
             "method": "POST",
             "header": [
               {
-                "key": "Authorization",
-                "value": "Bearer {{jwt_token}}"
-              },
-              {
                 "key": "Content-Type",
                 "value": "application/json"
               }
@@ -38,10 +34,6 @@
           "request": {
             "method": "POST",
             "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{jwt_token}}"
-              },
               {
                 "key": "Content-Type",
                 "value": "application/json"
@@ -64,10 +56,6 @@
             "method": "POST",
             "header": [
               {
-                "key": "Authorization",
-                "value": "Bearer {{jwt_token}}"
-              },
-              {
                 "key": "Content-Type",
                 "value": "application/json"
               }
@@ -87,12 +75,7 @@
           "name": "Get Notification",
           "request": {
             "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{jwt_token}}"
-              }
-            ],
+            "header": [],
             "url": {
               "raw": "{{base_url}}/notifications/{{notification_id}}",
               "host": ["{{base_url}}"],
@@ -104,12 +87,7 @@
           "name": "Get User Notifications",
           "request": {
             "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{jwt_token}}"
-              }
-            ],
+            "header": [],
             "url": {
               "raw": "{{base_url}}/notifications/user/{{user_id}}?page=0&size=20",
               "host": ["{{base_url}}"],
@@ -125,12 +103,7 @@
           "name": "Search Notifications",
           "request": {
             "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{jwt_token}}"
-              }
-            ],
+            "header": [],
             "url": {
               "raw": "{{base_url}}/notifications/search?status=SENT&type=EMAIL",
               "host": ["{{base_url}}"],
@@ -153,10 +126,6 @@
             "method": "POST",
             "header": [
               {
-                "key": "Authorization",
-                "value": "Bearer {{jwt_token}}"
-              },
-              {
                 "key": "Content-Type",
                 "value": "application/json"
               }
@@ -176,12 +145,7 @@
           "name": "Get Template",
           "request": {
             "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{jwt_token}}"
-              }
-            ],
+            "header": [],
             "url": {
               "raw": "{{base_url}}/templates/{{template_id}}",
               "host": ["{{base_url}}"],
@@ -193,12 +157,7 @@
           "name": "List Templates",
           "request": {
             "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{jwt_token}}"
-              }
-            ],
+            "header": [],
             "url": {
               "raw": "{{base_url}}/templates?page=0&size=20",
               "host": ["{{base_url}}"],
@@ -219,12 +178,7 @@
           "name": "Get User Preferences",
           "request": {
             "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{jwt_token}}"
-              }
-            ],
+            "header": [],
             "url": {
               "raw": "{{base_url}}/preferences/{{user_id}}",
               "host": ["{{base_url}}"],
@@ -237,10 +191,6 @@
           "request": {
             "method": "PUT",
             "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{jwt_token}}"
-              },
               {
                 "key": "Content-Type",
                 "value": "application/json"
@@ -266,12 +216,7 @@
           "name": "Retry Notification",
           "request": {
             "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{jwt_token}}"
-              }
-            ],
+            "header": [],
             "url": {
               "raw": "{{base_url}}/admin/retry/{{notification_id}}",
               "host": ["{{base_url}}"],
@@ -283,12 +228,7 @@
           "name": "Cancel Notification",
           "request": {
             "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{jwt_token}}"
-              }
-            ],
+            "header": [],
             "url": {
               "raw": "{{base_url}}/admin/cancel/{{notification_id}}",
               "host": ["{{base_url}}"],
@@ -303,10 +243,6 @@
     {
       "key": "base_url",
       "value": "http://localhost:8080"
-    },
-    {
-      "key": "jwt_token",
-      "value": ""
     },
     {
       "key": "user_id",
