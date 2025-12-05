@@ -24,6 +24,7 @@ public class PushDispatcher implements NotificationDispatcher {
     @Value("${notification.providers.push.server-key:}")
     private String serverKey;
     
+    @SuppressWarnings("unused")
     @Override
     public void dispatch(Notification notification) {
         try {

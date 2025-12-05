@@ -21,29 +21,6 @@ mvn spring-boot:run
 
 ---
 
-## Authentication
-
-All endpoints require JWT authentication. Include the token in the Authorization header:
-
-```bash
-Authorization: Bearer <your-jwt-token>
-```
-
-### JWT Token Format
-
-Your JWT must contain:
-- `sub`: User ID
-- `roles`: Array of roles (e.g., `["ROLE_USER"]` or `["ROLE_ADMIN"]`)
-
-**Example JWT Payload:**
-```json
-{
-  "sub": "user123",
-  "roles": ["ROLE_USER"],
-  "exp": 1733079546
-}
-```
-
 ---
 
 ## Common Use Cases
