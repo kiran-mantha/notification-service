@@ -10,7 +10,7 @@ Enterprise-grade notification service built with Spring Boot 3.2, Java 21, Postg
 - **Retry Mechanism**: Exponential backoff retry strategy for failed notifications
 - **Scheduling**: Support for future-dated notifications
 - **Audit Trail**: Complete delivery logs and history
-- **Security**: JWT-based authentication with role-based access control
+
 - **Observability**: Prometheus metrics, health checks, and logging
 - **Scalability**: Stateless design with Kafka for async processing
 
@@ -21,7 +21,6 @@ Enterprise-grade notification service built with Spring Boot 3.2, Java 21, Postg
 - PostgreSQL 16
 - Kafka
 - Liquibase
-- JWT
 - OpenAPI/Swagger
 - Docker & Kubernetes
 
@@ -147,12 +146,7 @@ The service uses Liquibase for database migrations. Schema includes:
 - `webhook_endpoints` - Webhook configurations
 - `delivery_logs` - Delivery audit logs
 
-## Security
 
-- JWT-based authentication required for all endpoints
-- Role-based access control (ROLE_USER, ROLE_ADMIN)
-- Webhook signature verification using HMAC SHA-256
-- Sensitive data encrypted in transit and at rest
 
 ## Retry Strategy
 
@@ -169,7 +163,6 @@ Failed notifications are retried with exponential backoff:
 
 ```bash
 curl -X POST http://localhost:8080/notifications/send \
-  -H "Authorization: Bearer <token>" \
   -H "Content-Type: application/json" \
   -d '{
     "userId": "user123",
@@ -186,7 +179,6 @@ curl -X POST http://localhost:8080/notifications/send \
 
 ```bash
 curl -X POST http://localhost:8080/templates \
-  -H "Authorization: Bearer <token>" \
   -H "Content-Type: application/json" \
   -d '{
     "name": "welcome-email",

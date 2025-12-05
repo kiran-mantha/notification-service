@@ -4,7 +4,7 @@ import com.enterprise.notification.domain.entity.Template;
 import com.enterprise.notification.dto.TemplateRequest;
 import com.enterprise.notification.service.TemplateService;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/templates")
 @RequiredArgsConstructor
 @Tag(name = "Templates", description = "Template management APIs")
-@SecurityRequirement(name = "bearerAuth")
 public class TemplateController {
     
     private final TemplateService templateService;
